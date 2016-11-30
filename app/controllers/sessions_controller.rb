@@ -5,7 +5,7 @@ end
 
 post '/sessions' do
   @user = User.find_by_email(params[:email])
-
+  #if this works, we login the user with helper method
   if @user && @user.password == params[:password]
     # session[:id] = @user.id
     login(@user)
@@ -22,6 +22,7 @@ end
 # delete '/sessions/:id' do
 delete '/sessions' do
   # session[:id] = nil
-  logout 
+  #helper method
+  logout
   redirect '/'
 end
