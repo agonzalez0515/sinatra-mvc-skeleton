@@ -13,7 +13,7 @@ end
 # USERS CREATE
 post '/users' do
 
-  if params[:password_confirmation] == params[:user][:password]
+  # if params[:password_confirmation] == params[:user][:password]
     @user = User.new(params[:user])
 
     if @user.save
@@ -24,11 +24,11 @@ post '/users' do
       erb :'users/new'
     end
 
-  else
-    @errors = ["Passwords do not match!"]
-    erb :'users/new'
-  end
-  
+  # else
+  #   @errors = ["Passwords do not match!"]
+  #   erb :'users/new'
+  # end
+
 end
 
 # USERS SHOW

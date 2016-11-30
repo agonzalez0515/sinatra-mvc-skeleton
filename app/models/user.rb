@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+#don't need namespace if Bcrypt is required
   def password
     @password ||= BCrypt::Password.new(password_hash)
   end
@@ -20,8 +21,12 @@ class User < ActiveRecord::Base
 
   # can change params as needed
   # feel free to refactor this
-  def authenticate?(email, txt_password)
-    self.email == email && self.password == txt_password
+  def self.authentication(email, password)
+    @user = User.find_by(email: email) #or username
+    if @user.password == password
+      true
+    else
+      false
+    end
   end
-
 end
